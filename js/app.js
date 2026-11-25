@@ -10,7 +10,10 @@
   }
   function media(item, label, cls) {
     if (item.image) {
-      return '<div class="media ' + (cls || "") + '"><img src="' + esc(item.image) + '" alt="' + esc(item.title) + '" loading="lazy"></div>';
+      var img = '<div class="media ' + (cls || "") + '"><img src="' + esc(item.image) + '" alt="' + esc(item.imageAlt || item.title) + '" loading="lazy"></div>';
+      return cls === "big" && item.caption
+        ? '<figure class="fig">' + img + "<figcaption>" + esc(item.caption) + "</figcaption></figure>"
+        : img;
     }
     return '<div class="media ph ' + (cls || "") + '"><span>' + esc(label) + "</span><span>image soon</span></div>";
   }

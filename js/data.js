@@ -59,7 +59,9 @@ window.EXPERIENCE = [
     period: "Oct 2025 – Sep 2026",
     place: "TU Hamburg",
     current: false,
-    image: null,
+    image: "assets/egnition-fsg2026.webp",
+    imageAlt: "The E-gnition Hamburg team on stage at Formula Student Germany 2026, in front of the screen showing 1st place DC Overall, Car 78, Hamburg TU",
+    caption: "The team on stage after winning the Driverless Cup at FSG 2026. Photo from E-gnition's LinkedIn post.",
     summary:
       "IMU and GPS driver and CI pipelines for a self-driving Formula Student race car. Our driverless team won the Driverless Cup at Formula Student Germany 2026.",
     body: [

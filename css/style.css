@@ -170,6 +170,11 @@ main:focus { outline: none; }
 /* detail page */
 .detail { display: grid; grid-template-columns: 1fr 260px; gap: 48px; }
 .detail .media.big { aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 32px; }
+.detail .media.big:not(.ph) { aspect-ratio: auto; }
+.detail .media.big:not(.ph) img { height: auto; }
+.fig { margin: 0 0 32px; }
+.fig .media.big { margin-bottom: 8px; }
+.fig figcaption { font-size: 13px; color: var(--muted); }
 .prose p { margin: 0 0 14px; max-width: 64ch; }
 .prose h2 { font-size: 13px; font-family: "IBM Plex Mono", monospace; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 32px 0 12px; }
 .prose ul { margin: 0; padding-left: 18px; max-width: 64ch; }
