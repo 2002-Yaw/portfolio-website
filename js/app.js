@@ -59,11 +59,14 @@
           '<span class="k">' + esc(S.role) + "</span>" +
           "<h1>" + esc(S.name) + "</h1>" +
           '<p class="intro">' + esc(S.intro) + "</p>" +
-          '<div class="btns">' +
-            '<a class="btn primary" href="#/projects">See projects</a>' +
-            '<a class="btn" href="#/experience">Experience</a>' +
-            '<a class="btn" href="#/contact">Get in touch</a>' +
-          "</div>" +
+          '<div class="now"><div class="k">Currently working on</div><ul>' +
+            (window.NOW || []).map(function (n) {
+              var inner = '<span class="now-t">' + esc(n.title) + "</span>" + (n.note ? '<span class="now-n">' + esc(n.note) + "</span>" : "");
+              if (!n.link) return "<li><div>" + inner + "</div></li>";
+              var ext = n.link.indexOf("http") === 0 ? ' target="_blank" rel="noopener"' : "";
+              return '<li><a href="' + esc(n.link) + '"' + ext + ">" + inner + '<span class="arrow">→</span></a></li>';
+            }).join("") +
+          "</ul></div>" +
         "</div>" +
         '<aside class="sheet">' +
           '<div class="sheet-head"><span class="k">Profile</span><span class="k">YO · 2026</span></div>' +
@@ -71,13 +74,21 @@
           "<dl>" + rows.map(function (r) { return '<div class="row"><dt>' + r[0] + "</dt><dd>" + esc(r[1]) + "</dd></div>"; }).join("") + "</dl>" +
         "</aside>" +
       "</section>" +
-      '<section class="block">' +
-        '<div class="block-head"><span class="k">Selected projects</span><a href="#/projects">all ' + P.length + " →</a></div>" +
-        '<div class="grid">' + P.slice(0, 3).map(projectCard).join("") + "</div>" +
+      '<section class="block" id="home-projects">' +
+        '<div class="block-head"><span class="k">Projects</span><a href="#/projects">filter →</a></div>' +
+        '<div class="grid">' + P.map(projectCard).join("") + "</div>" +
       "</section>" +
-      '<section class="block">' +
-        '<div class="block-head"><span class="k">Experience</span><a href="#/experience">more →</a></div>' +
+      '<section class="block" id="home-experience">' +
+        '<div class="block-head"><span class="k">Experience</span><a href="#/experience">open →</a></div>' +
         "<div>" + X.map(xpRow).join("") + "</div>" +
+      "</section>" +
+      '<section class="block" id="home-skills">' +
+        '<div class="block-head"><span class="k">Skills</span><a href="#/skills">open →</a></div>' +
+        skillsBody() +
+      "</section>" +
+      '<section class="block" id="home-contact">' +
+        '<div class="block-head"><span class="k">Contact</span></div>' +
+        contactBody() +
       "</section>";
   }
 
@@ -167,7 +178,11 @@
     return '<section class="page">' +
       '<div class="page-head"><span class="k">Skills</span><h1>What I work with</h1>' +
       "<p>Every skill links back to where I actually used it. The number shows how many projects or jobs.</p></div>" +
-      '<div class="skills"><div>' +
+      skillsBody() +
+    "</section>";
+  }
+  function skillsBody() {
+    return '<div class="skills"><div>' +
         SK.map(function (g) {
           return '<div class="sk-group"><div class="k">' + esc(g.group) + '</div><div class="sk-list">' +
             g.items.map(function (s) {
@@ -179,24 +194,26 @@
         '<div class="sk-group"><div class="k">Speaking</div><p style="margin:0">' + esc(S.languages) + "</p></div>" +
         '<div class="sk-group"><div class="k">Relevant courses</div><ul class="courses">' +
           window.COURSES.map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") + "</ul></div>" +
-      '</div><aside class="sk-panel" id="skPanel" aria-live="polite">' + skillPanel() + "</aside></div>" +
-    "</section>";
+      '</div><aside class="sk-panel" id="skPanel" aria-live="polite">' + skillPanel() + "</aside></div>";
   }
 
   function contact() {
+    return '<section class="page">' +
+      '<div class="page-head"><span class="k">Contact</span><h1>Get in touch</h1>' +
+      "<p>Open to working-student roles, internships and interesting projects in embedded, robotics and AI. Email is the fastest way to reach me.</p></div>" +
+      contactBody() +
+    "</section>";
+  }
+  function contactBody() {
     var rows = [
       ["email", S.email, "mailto:" + S.email],
       ["github", S.links.github.replace("https://", ""), S.links.github],
       ["linkedin", "LinkedIn profile", S.links.linkedin],
     ];
-    return '<section class="page">' +
-      '<div class="page-head"><span class="k">Contact</span><h1>Get in touch</h1>' +
-      "<p>Open to working-student roles, internships and interesting projects in embedded, robotics and AI. Email is the fastest way to reach me.</p></div>" +
-      '<div class="contact-list">' + rows.map(function (r) {
+    return '<div class="contact-list">' + rows.map(function (r) {
         var ext = r[2].indexOf("http") === 0 ? ' target="_blank" rel="noopener"' : "";
         return '<a href="' + esc(r[2]) + '"' + ext + '><span class="k">' + r[0] + '</span><span class="v">' + esc(r[1]) + '</span><span class="arrow">→</span></a>';
-      }).join("") + "</div>" +
-    "</section>";
+      }).join("") + "</div>";
   }
 
   function notFound() {

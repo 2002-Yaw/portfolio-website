@@ -20,6 +20,26 @@ window.SITE = {
   updated: "November 2026",
 };
 
+// "Currently working on" on the home page. Add new projects at the top.
+// `link` can point to a project or job page ("#/projects/thesis"), a URL, or be left out.
+window.NOW = [
+  {
+    title: "Bachelor thesis",
+    note: "Getting a flash file system (UFFS) running on small embedded devices.",
+    link: "#/projects/thesis",
+  },
+  {
+    title: "Driverless software at E-gnition",
+    note: "IMU nodes and CI for our self-driving Formula Student car.",
+    link: "#/experience/egnition",
+  },
+  {
+    title: "AI products at Justaddsugar",
+    note: "FastAPI services and frontends that put AI models into production.",
+    link: "#/experience/justaddsugar",
+  },
+];
+
 window.EXPERIENCE = [
   {
     id: "justaddsugar",
