@@ -28,16 +28,6 @@ window.NOW = [
     note: "Getting a flash file system (UFFS) running on small embedded devices.",
     link: "#/projects/thesis",
   },
-  {
-    title: "Driverless software at E-gnition",
-    note: "IMU nodes and CI for our self-driving Formula Student car.",
-    link: "#/experience/egnition",
-  },
-  {
-    title: "AI products at Justaddsugar",
-    note: "FastAPI services and frontends that put AI models into production.",
-    link: "#/experience/justaddsugar",
-  },
 ];
 
 window.EXPERIENCE = [

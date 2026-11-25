@@ -73,22 +73,6 @@
           photo +
           "<dl>" + rows.map(function (r) { return '<div class="row"><dt>' + r[0] + "</dt><dd>" + esc(r[1]) + "</dd></div>"; }).join("") + "</dl>" +
         "</aside>" +
-      "</section>" +
-      '<section class="block" id="home-projects">' +
-        '<div class="block-head"><span class="k">Projects</span><a href="#/projects">filter →</a></div>' +
-        '<div class="grid">' + P.map(projectCard).join("") + "</div>" +
-      "</section>" +
-      '<section class="block" id="home-experience">' +
-        '<div class="block-head"><span class="k">Experience</span><a href="#/experience">open →</a></div>' +
-        "<div>" + X.map(xpRow).join("") + "</div>" +
-      "</section>" +
-      '<section class="block" id="home-skills">' +
-        '<div class="block-head"><span class="k">Skills</span><a href="#/skills">open →</a></div>' +
-        skillsBody() +
-      "</section>" +
-      '<section class="block" id="home-contact">' +
-        '<div class="block-head"><span class="k">Contact</span></div>' +
-        contactBody() +
       "</section>";
   }
 
