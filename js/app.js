@@ -49,7 +49,7 @@
       : '<div class="sheet-photo ph"><span>PORTRAIT</span><span>image soon</span></div>';
     var rows = [
       ["study", "B.Sc. Computer Science, TU Hamburg (since 2022)"],
-      ["now", X.map(function (x) { return x.org.replace(" GmbH", ""); }).join(" · ")],
+      ["now", X.filter(function (x) { return x.current !== false; }).map(function (x) { return x.org.replace(" GmbH", ""); }).join(" · ")],
       ["focus", S.focus.join(" · ")],
       ["based", S.location],
       ["speaks", S.languages],
@@ -128,6 +128,7 @@
           '<div class="prose">' +
             it.body.map(function (b) { return "<p>" + esc(b) + "</p>"; }).join("") +
             "<h2>What I did</h2><ul>" + it.did.map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>" +
+            (it.outcome ? "<h2>Outcome</h2><p>" + esc(it.outcome) + "</p>" : "") +
           "</div>" +
         "</div>" +
         '<aside class="aside">' +

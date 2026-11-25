@@ -7,7 +7,7 @@ window.SITE = {
   short: "Yaw Obeng",
   role: "Computer Science student, TU Hamburg",
   intro:
-    "I build software close to the hardware and close to the user. Right now that means sensor nodes for a self-driving Formula Student car, a flash file system for small embedded devices, and AI features for production web apps.",
+    "I build software close to the hardware and close to the user: a flash file system for small embedded devices, AI features for production web apps, and before that the IMU and GPS driver for a self-driving Formula Student car.",
   location: "Hamburg, Germany",
   email: "yaw17beng@outlook.com",
   links: {
@@ -56,20 +56,31 @@ window.EXPERIENCE = [
     title: "Software Engineer, Driverless",
     org: "E-gnition Hamburg",
     type: "Formula Student team",
-    period: "Oct 2025 – now",
+    period: "Oct 2025 – Sep 2026",
     place: "TU Hamburg",
+    current: false,
     image: null,
     summary:
-      "Software for a self-driving Formula Student race car, in a team of about 70 engineering students.",
+      "IMU and GPS driver and CI pipelines for a self-driving Formula Student race car. Our driverless team won the Driverless Cup at Formula Student Germany 2026.",
     body: [
-      "E-gnition is TU Hamburg's Formula Student team. The driverless department, 11 people, builds the autonomous system that drives the car without anyone in the cockpit.",
+      "E-gnition is TU Hamburg's Formula Student team, about 70 engineering students. The driverless department, 11 people, builds the autonomous system that drives the car with nobody in the cockpit.",
+      "My part was the car's sense of its own motion and position: the driver node for the Xsens IMU, the GPS data that comes from the same unit, and the CI checks that keep the shared codebase clean.",
     ],
     did: [
-      "Co-develop and optimise software modules for the autonomous vehicle, including the IMU nodes.",
-      "Work with ROS, C++ and Python inside Docker-based development and car environments.",
-      "Built a CI/CD pipeline that runs automated tests, static code analysis and build validation on every change.",
+      "Worked on the ROS 2 driver node for the Xsens IMU (C++), which publishes the car's acceleration and rotation data to the rest of the autonomous stack.",
+      "Added GPS to the IMU node: ported the GPS handling from the old ROS 1 code, read the raw GNSS position data from the sensor and published it as a standard ROS NavSatFix message.",
+      "Made the GPS output reliable: tracked fix quality (3D fix, dead reckoning), logged when the fix is acquired or lost, fixed timestamps and the IMU/GPS message order, and added satellite info.",
+      "Cleaned up the node: topics and settings come from the shared YAML config instead of hard-coded values, and magic numbers became named enums.",
+      "Built CI for the team's GitHub repo, including a clang-format check that runs on every pull request with its own format-check script.",
+      "Kept my branches working as the team moved to a new code base, updating the vehicle simulator, mission state and shared nodes to build again.",
     ],
-    stack: ["C++", "Python", "ROS", "Docker", "CI/CD", "Linux"],
+    outcome:
+      "Our driverless team won the Driverless Cup at Formula Student Germany 2026 in Hockenheim.",
+    links: [
+      { label: "FSG 2026 results", url: "https://www.formulastudent.de/pr/news/details/article/fsg-2026" },
+      // { label: "E-gnition's post on LinkedIn", url: "PASTE-LINKEDIN-POST-URL" },
+    ],
+    stack: ["C++", "ROS 2", "Xsens IMU", "GNSS", "GitHub Actions", "Docker", "Linux"],
   },
 ];
 
