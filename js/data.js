@@ -78,7 +78,7 @@ window.EXPERIENCE = [
       "Our driverless team won the Driverless Cup at Formula Student Germany 2026 in Hockenheim.",
     links: [
       { label: "FSG 2026 results", url: "https://www.formulastudent.de/pr/news/details/article/fsg-2026" },
-      // { label: "E-gnition's post on LinkedIn", url: "PASTE-LINKEDIN-POST-URL" },
+      { label: "E-gnition's post on LinkedIn", url: "https://lnkd.in/p/exHhKPsq" },
     ],
     stack: ["C++", "ROS 2", "Xsens IMU", "GNSS", "GitHub Actions", "Docker", "Linux"],
   },
@@ -147,43 +147,6 @@ window.PROJECTS = [
     stack: ["C", "RIOT-OS", "IMU", "Microcontrollers"],
     links: [],
   },
-  {
-    id: "stm32",
-    title: "Multi-board STM32 system",
-    kind: "Space systems project",
-    year: "2025",
-    place: "TU Hamburg",
-    image: null,
-    summary: "Firmware for three STM32H7 boards that work together.",
-    body: [
-      "A course project in the space systems context: three microcontroller boards have to cooperate as one system.",
-    ],
-    did: [
-      "Wrote firmware for STM32H753 boards in C.",
-      "Set up the build with CMake and the STM32 toolchain.",
-    ],
-    stack: ["C", "STM32", "CMake", "Embedded"],
-    links: [],
-  },
-  {
-    id: "bookshop",
-    title: "Bookshop app, agile modelling",
-    kind: "Software engineering project",
-    year: "2024",
-    place: "TU Hamburg",
-    image: null,
-    summary:
-      "The architecture and workflows of a shop system, modelled formally inside a Scrum team.",
-    body: [
-      "Before writing code, we modelled how a bookshop system should behave, and checked the design with formal methods.",
-    ],
-    did: [
-      "Designed the software architecture and workflows with UML, extended finite state machines and Petri nets.",
-      "Worked in a Scrum team and used Git to develop the agile artefacts together.",
-    ],
-    stack: ["UML", "EFSM", "Petri nets", "Scrum", "Git"],
-    links: [],
-  },
 ];
 
 // Skills: each one lists where it was used (project or experience ids).
@@ -191,7 +154,7 @@ window.SKILLS = [
   {
     group: "Languages",
     items: [
-      { name: "C", used: ["thesis", "riot", "stm32"] },
+      { name: "C", used: ["thesis", "riot"] },
       { name: "C++", used: ["egnition"] },
       { name: "Python", used: ["justaddsugar", "egnition", "emnist"] },
       { name: "JavaScript", used: ["justaddsugar"] },
@@ -204,11 +167,11 @@ window.SKILLS = [
     group: "Systems & tools",
     items: [
       { name: "Linux", used: ["egnition"] },
-      { name: "Git", used: ["bookshop", "egnition"] },
+      { name: "Git", used: ["egnition"] },
       { name: "Docker", used: ["egnition"] },
       { name: "ROS", used: ["egnition"] },
       { name: "CI/CD", used: ["egnition"] },
-      { name: "CMake", used: ["thesis", "stm32"] },
+      { name: "CMake", used: ["thesis"] },
       { name: "RIOT-OS", used: ["riot"] },
     ],
   },
@@ -226,8 +189,6 @@ window.SKILLS = [
     items: [
       { name: "Machine learning", used: ["emnist"] },
       { name: "Testing & QA", used: ["emnist", "egnition"] },
-      { name: "UML & modelling", used: ["bookshop"] },
-      { name: "Scrum", used: ["bookshop"] },
     ],
   },
 ];

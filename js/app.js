@@ -76,19 +76,11 @@
       "</section>";
   }
 
-  var activeFilter = "All";
   function projects() {
-    var kinds = ["All"];
-    P.forEach(function (p) { if (kinds.indexOf(p.kind) < 0) kinds.push(p.kind); });
-    var list = P.map(function (p, i) { return { p: p, i: i }; })
-      .filter(function (o) { return activeFilter === "All" || o.p.kind === activeFilter; });
     return '<section class="page">' +
       '<div class="page-head"><span class="k">Projects · ' + P.length + "</span><h1>Things I have built</h1>" +
       "<p>University projects, my thesis and work on the side. Open one to see the problem, what I did and the stack.</p></div>" +
-      '<div class="filters" role="group" aria-label="Filter projects">' +
-        kinds.map(function (k) { return '<button type="button" data-filter="' + esc(k) + '" aria-pressed="' + (k === activeFilter) + '">' + esc(k) + "</button>"; }).join("") +
-      "</div>" +
-      '<div class="grid">' + list.map(function (o) { return projectCard(o.p, o.i); }).join("") + "</div>" +
+      '<div class="grid">' + P.map(projectCard).join("") + "</div>" +
     "</section>";
   }
 
@@ -235,8 +227,6 @@
 
   // clicks inside views (filters, skills)
   app.addEventListener("click", function (e) {
-    var f = e.target.closest("[data-filter]");
-    if (f) { activeFilter = f.dataset.filter; render(); return; }
     var s = e.target.closest("[data-skill]");
     if (s) {
       var g = SK.filter(function (x) { return x.group === s.dataset.group; })[0];
