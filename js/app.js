@@ -76,6 +76,37 @@
       "</section>";
   }
 
+  // CV-style one-page overview
+  function overview() {
+    function entry(when, title, org, text, tagList, href) {
+      var h = esc(title) + (org ? ' <span class="org">· ' + esc(org) + "</span>" : "");
+      return '<div class="cv-entry"><div class="when">' + esc(when) + "</div><div>" +
+        "<h3>" + (href ? '<a href="' + href + '">' + h + "</a>" : h) + "</h3>" +
+        (text ? "<p>" + esc(text) + "</p>" : "") +
+        (tagList ? '<div class="cv-tags">' + tagList.map(function (t) { return esc(t.toLowerCase()); }).join(" · ") + "</div>" : "") +
+        "</div></div>";
+    }
+    return '<section class="page cv">' +
+      '<div class="page-head"><span class="k">Overview</span><h1>' + esc(S.name) + "</h1>" +
+      "<p>" + esc(S.role) + " · " + esc(S.location) + "</p></div>" +
+      '<p class="cv-intro">' + esc(S.intro) + "</p>" +
+      '<div class="cv-links"><a href="mailto:' + esc(S.email) + '">email</a><a href="' + esc(S.links.github) + '" target="_blank" rel="noopener">github</a><a href="' + esc(S.links.linkedin) + '" target="_blank" rel="noopener">linkedin</a></div>' +
+      '<div class="cv-sec"><h2>Work</h2>' +
+        X.map(function (x) { return entry(x.period, x.title, x.org.replace(" GmbH", ""), x.summary, x.stack.slice(0, 5), "#/experience/" + x.id); }).join("") +
+      "</div>" +
+      '<div class="cv-sec"><h2>Projects</h2>' +
+        P.map(function (p) { return entry(p.year, p.title, null, p.summary, p.stack.slice(0, 4), "#/projects/" + p.id); }).join("") +
+      "</div>" +
+      '<div class="cv-sec"><h2>Skills</h2><dl class="cv-skills">' +
+        SK.map(function (g) { return "<dt>" + esc(g.group.toLowerCase()) + "</dt><dd>" + g.items.map(function (s) { return esc(s.name); }).join(", ") + "</dd>"; }).join("") +
+        "<dt>speaking</dt><dd>" + esc(S.languages) + "</dd>" +
+      "</dl></div>" +
+      '<div class="cv-sec"><h2>Education</h2>' +
+        entry("2022 – now", "B.Sc. Computer Science", "TU Hamburg", "Courses: " + window.COURSES.join(", ") + ".") +
+      "</div>" +
+    "</section>";
+  }
+
   function projects() {
     return '<section class="page">' +
       '<div class="page-head"><span class="k">Projects · ' + P.length + "</span><h1>Things I have built</h1>" +
@@ -206,6 +237,7 @@
     if (!view) html = home();
     else if (view === "projects" && parts[1]) html = detail("projects", parts[1]);
     else if (view === "experience" && parts[1]) html = detail("experience", parts[1]);
+    else if (view === "overview") html = overview();
     else if (view === "projects") html = projects();
     else if (view === "experience") html = experience();
     else if (view === "skills") html = skills();

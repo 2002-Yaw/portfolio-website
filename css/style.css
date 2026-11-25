@@ -208,6 +208,31 @@ main:focus { outline: none; }
 .courses { margin-top: 12px; padding-left: 18px; }
 .courses li::marker { color: var(--mark); }
 
+/* overview (CV) */
+.cv { max-width: 720px; }
+.cv-intro { margin: 0 0 14px; max-width: 64ch; }
+.cv-links { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 14px "IBM Plex Mono", monospace; }
+.cv-links a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.cv-links a:hover { text-decoration-color: var(--mark); }
+.cv-sec { margin-top: 48px; }
+.cv-sec h2 { font: 500 12px/1 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.cv-entry { display: grid; grid-template-columns: 150px 1fr; gap: 0 20px; margin-bottom: 24px; }
+.cv-entry:last-child { margin-bottom: 0; }
+.cv-entry .when { font: 13px/1.7 "IBM Plex Mono", monospace; color: var(--muted); }
+.cv-entry h3 { font-size: 16px; font-weight: 600; margin: 0; }
+.cv-entry h3 a { text-decoration: none; }
+.cv-entry h3 a:hover { text-decoration: underline; text-decoration-color: var(--mark); text-underline-offset: 3px; }
+.cv-entry .org { color: var(--muted); font-weight: 400; }
+.cv-entry p { margin: 4px 0 0; }
+.cv-tags { font: 12.5px/1.6 "IBM Plex Mono", monospace; color: var(--muted); margin-top: 6px; }
+.cv-skills { display: grid; grid-template-columns: 150px 1fr; gap: 8px 20px; margin: 0; }
+.cv-skills dt { font: 13px/1.7 "IBM Plex Mono", monospace; color: var(--muted); }
+.cv-skills dd { margin: 0; }
+@media (max-width: 620px) {
+  .cv-entry, .cv-skills { grid-template-columns: 1fr; }
+  .cv-skills dt { margin-top: 8px; }
+}
+
 /* contact */
 .contact-list { border-top: 1px solid var(--line); max-width: 640px; }
 .contact-list a { display: grid; grid-template-columns: 120px 1fr auto; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
@@ -240,6 +265,8 @@ main:focus { outline: none; }
   .contact-list .k { grid-column: 1 / -1; }
   .page-head h1 { font-size: 27px; }
 }
-@media (max-width: 380px) {
-  .nav-links a[data-nav="contact"] { display: none; }
+@media (max-width: 480px) {
+  .nav-links { overflow-x: auto; scrollbar-width: none; min-width: 0; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { flex: none; }
 }
